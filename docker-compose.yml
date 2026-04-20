@@ -1,0 +1,77 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: spring-ai-postgres
+    environment:
+      POSTGRES_DB: ai
+      POSTGRES_USER: abopij
+      POSTGRES_PASSWORD: hard-password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_spring_ai_data:/var/lib/postgresql
+    restart: always
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    restart: unless-stopped
+
+    entrypoint: [ "/bin/sh", "-c" ]
+    command: >
+      "
+      ollama serve &
+      sleep 5;
+      ollama pull gemma4:e2b;
+      ollama pull mxbai-embed-large;
+      wait
+      "
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:latest
+    container_name: open-webui
+    volumes:
+      - open-webui:/app/backend/data
+    depends_on:
+      - ollama
+    ports:
+      - "7979:8080"
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+      WEBUI_SECRET_KEY: ""
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: unless-stopped
+
+
+  chroma:
+    image: chromadb/chroma:latest
+    volumes:
+      - chroma:/chroma/data
+    ports:
+      - "8000:8000"
+    environment:
+      - ALLOW_RESET=true
+      - ANONYMIZED_TELEMETRY=false
+    restart: unless-stopped
+
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  postgres_spring_ai_data:
+    driver: local
+  ollama:
+  open-webui:
+  chroma:
+  redis-data:

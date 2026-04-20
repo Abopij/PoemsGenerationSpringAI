@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: spring-ai
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ai
+    username: abopij
+    password: hard-password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      embedding:
+        model: "nomic-embed-text"
+        options:
+          truncate: true
+      init:
+        pull-model-strategy: when_missing
+      chat:
+        options:
+          model: "gemma4:e2b"
+          temperature: 0.4
+          num-ctx: 8192
+
+    chat:
+      memory:
+        redis:
+          host: localhost
+          port: 6379
+
+    vectorstore:
+      chroma:
+        client:
+          host: http://localhost
+          port: 8000
+        initialize-schema: true
+
+    model:
+      chat: ollama
+      embedding: ollama
+
+springdoc:
+  swagger-ui:
+    path: "/docs"
+
+server:
+  port: 8081
