@@ -69,32 +69,19 @@ services:
       - redis-data:/data
 
 
-  ace-step:
-    image: ghcr.io/dotnetautor/ace-step-1.5-docker:latest
-    container_name: ace-step
-    entrypoint: ["/bin/sh", "-lc"]
-    command:
-      - |
-        set -e
-        uv run acestep-download --list
-        uv run acestep-download --dir /workspace/ace_music_platform/source_tree/checkpoints
-        exec uv run acestep-api
-    environment:
-      PORT: "8001"
-      SERVER_NAME: "0.0.0.0"
-      LANGUAGE: "en"
-      ACESTEP_DOWNLOAD_SOURCE: "huggingface"
-      ACESTEP_INIT_LLM: "false"
-      ACESTEP_OFFLOAD_TO_CPU: "true"
-      ACESTEP_OFFLOAD_DIT_TO_CPU: "true"
-      ACESTEP_VAE_ON_CPU: "1"
-      ACESTEP_QUEUE_WORKERS: "1"
-#      MAX_CUDA_VRAM: "12"
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio-ai-songs
     ports:
-      - "8001:8001"
+      - "9000:9000"  # S3 API
+      - "9001:9001"  # Web UI
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: adminpassword
+    command: server /data --console-address ":9001"
     volumes:
-      - ace-step-checkpoints:/workspace/ace_music_platform/source_tree/checkpoints
-    restart: unless-stopped
+      - minio_data_ai_songs:/data
+    restart: always
 
 
 volumes:
@@ -105,3 +92,4 @@ volumes:
   chroma:
   redis-data:
   ace-step-checkpoints:
+  minio_data_ai_songs:

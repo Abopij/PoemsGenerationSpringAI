@@ -2,11 +2,13 @@ spring:
   application:
     name: spring-ai-songs-generation
 
+
   datasource:
     url: jdbc:postgresql://localhost:5432/ai
     username: abopij
     password: hard-password
     driver-class-name: org.postgresql.Driver
+
 
   jpa:
     hibernate:
@@ -15,6 +17,7 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
 
   ai:
     ollama:
@@ -31,11 +34,13 @@ spring:
           temperature: 0.4
           num-ctx: 8192
 
+
     chat:
       memory:
         redis:
           host: localhost
           port: 6379
+
 
     vectorstore:
       chroma:
@@ -44,18 +49,43 @@ spring:
           port: 8000
         initialize-schema: true
 
+
     model:
       chat: ollama
       embedding: ollama
 
+
 ace-step:
-  base-url: http://localhost:8001
-  poll-interval-ms: 2000
-  timeout-seconds: 900
+  base-url: ${ACE_MUSIC_BASE_URL:https://api.acemusic.ai}
+  api-key: ${ACE_MUSIC_API_KEY:}
+  model: ${ACE_MUSIC_MODEL:acemusic/acestep-v1.5-turbo}
+  timeout-seconds: 600
+  defaults:
+    task-type: text2music
+    audio-format: mp3
+    vocal-language: en
+    temperature: 0.85
+    top-p: 0.9
+    sample-mode: false
+    thinking: false
+    use-format: false
+    use-cot-caption: true
+    use-cot-language: true
+    guidance-scale: 7.0
+    batch-size: 1
+
+
+minio:
+  url: http://localhost:9000
+  access:
+    name: admin
+    secret: adminpassword
+
 
 springdoc:
   swagger-ui:
     path: "/docs"
+
 
 server:
   port: 8082

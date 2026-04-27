@@ -13,7 +13,7 @@ public class SongGenerationService {
     private final AceStepClient aceStepClient;
 
     public SongGenerationResponse generateSong(AceStepGenerationRequest request) {
-        if (!StringUtils.hasText(request.prompt()) && !StringUtils.hasText(request.lyrics())) {
+        if (!StringUtils.hasText(request.caption()) && !StringUtils.hasText(request.lyrics())) {
             throw new IllegalArgumentException("Either prompt or lyrics must be provided");
         }
 

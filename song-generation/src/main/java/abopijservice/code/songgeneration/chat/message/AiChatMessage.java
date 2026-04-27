@@ -25,7 +25,7 @@ public class AiChatMessage {
     private String prompt;
 
     @Column(length = Integer.MAX_VALUE)
-    private String response;
+    private String responseLinkToFile;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_id", nullable = false)

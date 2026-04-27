@@ -12,4 +12,11 @@
     <name>song-generation</name>
     <description>song-generation</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.17</version>
+        </dependency>
+    </dependencies>
 </project>
