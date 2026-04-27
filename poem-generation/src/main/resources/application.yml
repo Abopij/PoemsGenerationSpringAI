@@ -48,6 +48,10 @@ spring:
       chat: ollama
       embedding: ollama
 
+  grpc:
+    server:
+      port: 9091
+
 springdoc:
   swagger-ui:
     path: "/docs"

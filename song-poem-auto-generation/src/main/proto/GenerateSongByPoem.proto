@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package abopijservice.songpoemautogeneration.grpc;
+
+option java_package = "abopijservice.code.grpc.songpoem";
+option java_outer_classname = "GenerateSongByPoemProto";
+option java_multiple_files = true;
+
+message SongGenerationRequest {
+  string poem = 1;
+  string styles = 2;
+}
+
+message SongGenerationResponse {
+  string link = 1;
+  string minio_key = 2;
+}
+
+service GenerationSongGrpcController {
+  rpc Generate(SongGenerationRequest) returns (SongGenerationResponse);
+}

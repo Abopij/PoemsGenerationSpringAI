@@ -25,7 +25,7 @@ public class AiChat {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column
+    @Column(length = Integer.MAX_VALUE)
     private String title;
 
     @OneToMany

@@ -2,6 +2,19 @@ spring:
   application:
     name: spring-ai-auto-generation-songs-by-poems
 
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ai
+    username: abopij
+    password: hard-password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   ai:
     ollama:
@@ -34,6 +47,14 @@ spring:
     model:
       chat: ollama
       embedding: ollama
+
+  grpc:
+    client:
+      channels:
+        poem-generation:
+          address: ${POEM_GENERATION_GRPC_ADDRESS:localhost:9091}
+        song-generation:
+          address: ${SONG_GENERATION_GRPC_ADDRESS:localhost:9092}
 
 
 springdoc:

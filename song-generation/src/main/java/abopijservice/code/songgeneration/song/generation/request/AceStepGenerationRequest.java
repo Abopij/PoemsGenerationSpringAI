@@ -33,4 +33,37 @@ public record AceStepGenerationRequest(
         @JsonAlias("input_audio_format") String inputAudioFormat,
         @JsonAlias("reference_audio_base64") String referenceAudioBase64,
         @JsonAlias("reference_audio_format") String referenceAudioFormat
-) {}
+) {
+    public static AceStepGenerationRequest simple(String prompt, String lyrics) {
+        return new AceStepGenerationRequest(
+                prompt,
+                lyrics,
+                null,
+                null,
+                "mp3",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+}

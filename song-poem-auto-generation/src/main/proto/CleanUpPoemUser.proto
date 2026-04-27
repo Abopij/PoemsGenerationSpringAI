@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package abopijservice.songpoemautogeneration.grpc;
+
+option java_package = "abopijservice.code.grpc.songpoem";
+option java_outer_classname = "CleanUpPoemUserProto";
+option java_multiple_files = true;
+
+message PoemGenerationRequest {
+  string chat_id = 1;
+  string prompt = 2;
+  string words = 3;
+}
+
+message PoemGenerationResponse {
+  string chat_id = 1;
+  string title = 2;
+  string poem = 3;
+  string styles = 4;
+}
+
+service GenerationPoemsGrpcController {
+  rpc Generate(PoemGenerationRequest) returns (PoemGenerationResponse);
+}

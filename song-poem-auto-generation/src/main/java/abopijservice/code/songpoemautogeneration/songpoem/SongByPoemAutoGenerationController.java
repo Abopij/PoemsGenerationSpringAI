@@ -1,4 +1,4 @@
-package abopijservice.code.songpoemautogeneration;
+package abopijservice.code.songpoemautogeneration.songpoem;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +17,6 @@ public class SongByPoemAutoGenerationController {
     public SongByPoemAutoGenerationResponse generateSongByPoemAutoGeneration(
             @RequestBody SongByPoemAutoGenerationRequest request
     ) {
-
+        return service.generate(request);
     }
 }

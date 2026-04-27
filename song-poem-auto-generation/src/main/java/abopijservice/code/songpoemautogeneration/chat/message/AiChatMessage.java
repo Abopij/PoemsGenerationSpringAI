@@ -1,5 +1,6 @@
 package abopijservice.code.songpoemautogeneration.chat.message;
 
+import abopijservice.code.songpoemautogeneration.chat.AiChat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

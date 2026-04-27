@@ -21,6 +21,11 @@
         <maven.compiler.target>21</maven.compiler.target>
         <spring-ai.version>2.0.0-M4</spring-ai.version>
         <springdoc-openapi-starter-webmvc-ui.version>3.0.3</springdoc-openapi-starter-webmvc-ui.version>
+        <spring-grpc.version>1.0.2</spring-grpc.version>
+        <grpc.version>1.77.1</grpc.version>
+        <protobuf-java.version>4.33.4</protobuf-java.version>
+        <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
+        <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
     </properties>
 
     <packaging>pom</packaging>
@@ -28,6 +33,7 @@
     <modules>
         <module>song-generation</module>
         <module>poem-generation</module>
+        <module>song-poem-auto-generation</module>
     </modules>
 
     <dependencyManagement>
@@ -36,6 +42,13 @@
                 <groupId>org.springframework.ai</groupId>
                 <artifactId>spring-ai-bom</artifactId>
                 <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.grpc</groupId>
+                <artifactId>spring-grpc-dependencies</artifactId>
+                <version>${spring-grpc.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

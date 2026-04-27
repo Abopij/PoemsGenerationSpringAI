@@ -2,12 +2,31 @@ spring:
   application:
     name: spring-ai-songs-generation
 
+  grpc:
+    server:
+      port: 9092
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ai
+    username: abopij
+    password: hard-password
+    driver-class-name: org.postgresql.Driver
+
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
 
 ace-step:
   base-url: ${ACE_MUSIC_BASE_URL:https://api.acemusic.ai}
   api-key: ${ACE_MUSIC_API_KEY:}
   model: ${ACE_MUSIC_MODEL:acemusic/acestep-v1.5-turbo}
-  timeout-seconds: 600
+  timeout-seconds: 1000
   defaults:
     task-type: text2music
     audio-format: mp3
