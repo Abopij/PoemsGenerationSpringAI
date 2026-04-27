@@ -1,4 +1,4 @@
-package abopijservice.code.songgeneration.chat;
+package abopijservice.code.songpoemautogeneration.chat;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,5 @@
-package abopijservice.code.songgeneration.chat.message;
+package abopijservice.code.songpoemautogeneration.chat.message;
 
-import abopijservice.code.songgeneration.chat.AiChat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name = "ai_chat_message_songs_by_poems_auto")
 public class AiChatMessage {
 
     @Id
@@ -25,7 +24,7 @@ public class AiChatMessage {
     private String prompt;
 
     @Column(length = Integer.MAX_VALUE)
-    private String responseLinkToFile;
+    private String response;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_id", nullable = false)

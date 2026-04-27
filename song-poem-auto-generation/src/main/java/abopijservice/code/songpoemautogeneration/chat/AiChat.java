@@ -1,6 +1,6 @@
-package abopijservice.code.songgeneration.chat;
+package abopijservice.code.songpoemautogeneration.chat;
 
-import abopijservice.code.songgeneration.chat.message.AiChatMessage;
+import abopijservice.code.poemgeneration.chat.message.AiChatMessage;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name = "ai_chat_songs_by_poems_auto")
 public class AiChat {
 
     @Id

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "com.baeldung.helloworld.stubs";
+option java_multiple_files = true;
+
+message PoemGenerationRequest {
+  string original_poem = 1;
+}
+
+message PoemGenerationResponse {
+  string chatId = 1;
+  string title = 2;
+  string poem = 3;
+  string styles = 4;
+}
+
+service GenerationPoemsGrpcController {
+  rpc generate(stream PoemGenerationRequest) returns (stream PoemGenerationResponse);
+}

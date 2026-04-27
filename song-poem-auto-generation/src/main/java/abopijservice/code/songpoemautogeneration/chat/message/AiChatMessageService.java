@@ -1,6 +1,5 @@
-package abopijservice.code.songgeneration.chat.message;
+package abopijservice.code.songpoemautogeneration.chat.message;
 
-import abopijservice.code.songgeneration.minio.MinIOService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

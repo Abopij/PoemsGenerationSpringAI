@@ -1,4 +1,4 @@
-package abopijservice.code.songgeneration.redis;
+package abopijservice.code.songpoemautogeneration.infrastructure.redis;
 
 import org.springframework.ai.chat.memory.repository.redis.RedisChatMemoryRepository;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
